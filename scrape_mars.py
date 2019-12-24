@@ -21,7 +21,7 @@ def init_visit_web(url):
     soup = BeautifulSoup(browser.html, 'lxml')
     return soup
 
-def scrape(db):
+def scrape():
     
     # mars news
     url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
@@ -86,8 +86,6 @@ def scrape(db):
         hemisphere_image_urls.append({"title": title, "img_url": image_url})
     print(hemisphere_image_urls)
 
-    # create a dictionary for img urls
-    mars_hemispheres_imgs=json.dumps(hemisphere_image_urls)
 
     # create a dictionary with all the data collected
     mars_record= {
@@ -96,9 +94,11 @@ def scrape(db):
             'featured_image_url': featured_image_url,
             'mars_weather': mars_weather,
             'mars_facts': mars_facts,
-            'hemisphere_image_urls': mars_hemispheres_imgs
+            'hemisphere_image_urls':hemisphere_image_urls,
         }
 
     # Delete previous data and insert new into Mongo DB
-    db.items.delete_many({})
-    db.items.insert_one(mars_record)
+     
+    browser.quit()
+    return mars_record
+

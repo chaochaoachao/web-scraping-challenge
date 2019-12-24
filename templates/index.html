@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
   <meta charset="UTF-8">
   <title>Mission To Mars</title>
-  <link rel="stylesheet" href="style.css">
 
+  <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
+  <style>
+    table, td, th {
+      border: 1px solid black;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th {
+      text-align: left;
+      height: 10px;
+    }
+  div.gallery {
+  margin: 40px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 500px;
+}
+
+div.gallery:hover {
+  border: 10px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: left;
+}
+  </style>
 </head>
 
 <body>
@@ -18,55 +51,60 @@
 
 
   <div class="top_box">
-    <h2>Latest News</h2>
+    <h2>Latest Mars News</h2>
     <p class="title_left"><b>{{mars_data.news_title}}</b></p>
     <p class="p_left">{{mars_data.news_p}}</p>
   </div>
 
-  <div class="container">
+  <div class="row">
 
     <div class="featured_image">
     
         <h2>Featured Mars Image</h2>
         <a href="{{mars_data.featured_image_url}}" target="_blank">
-          <img src="{{mars_data.featured_image_url}}" class="figure-img img-fluid rounded">
+          <div class="img">
+          <img src="{{mars_data.featured_image_url}}" style="height:90%;width:90%;">
+          </div>
         </a>
+
     </div>
     
-
-    <div class="col-md-4">
-      <h2>Current Weather on Mars</h2>
-      <p class="font-weight-light">{{mars_data.mars_weather}}</p>
-  
-    </div>
-
-    
-    <div class="col-md table-sm table-striped table-borderless small">
-        <h2>Mars Facts</h2>
-        {{mars_data.mars_facts|safe}}
-
-    </div>
-
+    <div class="side">
    
-    <div class="bottom_row">
-
-      <div class="title_center">
-        <h2>Hemispheres</h2>
+      <h2>Current Weather on Mars</h2>
+      
+      <div class="weather_textbox">
+      <p> {{mars_data.mars_weather}}</p>
       </div>
-
-      {% for hemi in mars_data.hemisphere_image_urls%}
-      <div class="col-md-6">
-        <figure class="figure">
-          <a href="{{hemi.img_url}}" target="_blank">
-            <figcaption class="figure-caption">{{hemi.title}}</figcaption>
-            <img src="{{hemi.img_url}}" class="figure-img img-fluid rounded">
-          </a>
-        </figure>
+  
+    
+      <div class="table-title">
+          <h2>Mars Facts</h2>
+          <div class="table">
+          {{mars_data.mars_facts|safe}}
+          </div>
       </div>
-      {% endfor %}
-
     </div>
   </div>
+ 
+
+      <div class="bottom_title">
+        <h3>Mars Hemispheres</h3>
+      </div>
+          
+          <!-- Loop through hemispheres dictionary with images and titles -->
+          {% for hemisphere in mars_data.hemisphere_image_urls %}
+
+          <div class="gallery">
+            <a target="_blank" href="{{hemisphere.img_url}}">
+              <img src="{{hemisphere.img_url}}" alt="images" width="1000" height="1000">
+            </a>
+            <div class="desc"><b>{{hemisphere.title}}</b></div>
+          </div>
+          
+          {% endfor %}
+  
+
 
 </body>
 
