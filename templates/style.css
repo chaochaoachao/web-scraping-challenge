@@ -1,0 +1,45 @@
+
+
+
+.header {
+    padding: 60px;
+    text-align: center;
+    background: #1abc9c;
+    color: black;
+    padding: inherit;
+    font-weight: bold;
+    font-size:18px;
+}
+
+
+
+.h2{
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    font-size:18px;
+}
+
+
+.title_center{
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size:18px;
+
+}
+
+.title_left{
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    font-size:18px;
+
+}
+
+
+.col-md-6{
+
+
+}
+
